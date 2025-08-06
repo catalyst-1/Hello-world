@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4">Get In Touch</h1>
+                <p class="lead">I'd love to hear from you. Send me a message!</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <!-- Contact Information -->
+            <div class="col-lg-6 mb-5">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Contact Information</h3>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-envelope text-primary me-3 fa-lg"></i>
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <p class="ms-5 mb-0">
+                                <a href="mailto:{{ data.email }}" class="text-decoration-none">{{ data.email }}</a>
+                            </p>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-phone text-primary me-3 fa-lg"></i>
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <p class="ms-5 mb-0">
+                                <a href="tel:{{ data.phone }}" class="text-decoration-none">{{ data.phone }}</a>
+                            </p>
+                        </div>
+                        
+                        <div class="contact-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-map-marker-alt text-primary me-3 fa-lg"></i>
+                                <h6 class="mb-0">Location</h6>
+                            </div>
+                            <p class="ms-5 mb-0">{{ data.location }}</p>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h5 class="mb-3">Follow Me</h5>
+                        <div class="social-links">
+                            <a href="{{ data.social.github }}" class="btn btn-outline-dark me-2 mb-2" target="_blank">
+                                <i class="fab fa-github me-1"></i>GitHub
+                            </a>
+                            <a href="{{ data.social.linkedin }}" class="btn btn-outline-primary me-2 mb-2" target="_blank">
+                                <i class="fab fa-linkedin me-1"></i>LinkedIn
+                            </a>
+                            <a href="{{ data.social.twitter }}" class="btn btn-outline-info me-2 mb-2" target="_blank">
+                                <i class="fab fa-twitter me-1"></i>Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Send Message</h3>
+                        
+                        <form method="POST" action="{{ url_for('contact') }}">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name *</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Your Email *</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell me about your project or just say hello!"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-paper-plane me-2"></i>Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Information -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <div class="bg-light p-5 rounded">
+                    <h3 class="mb-3">Let's Build Something Amazing Together</h3>
+                    <p class="lead mb-0">
+                        Whether you have a project in mind or just want to chat about technology, 
+                        I'm always excited to connect with fellow developers and potential collaborators.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
