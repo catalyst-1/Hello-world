@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}About - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h1 class="display-4">About Me</h1>
+                <p class="lead">Get to know more about my background and experience</p>
+            </div>
+        </div>
+        
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-6">
+                <div class="bg-light rounded-circle mx-auto mb-4" style="width: 300px; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-user fa-9x text-primary"></i>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h2 class="mb-4">My Story</h2>
+                {% for paragraph in data.about.text.split('\n') %}
+                    {% if paragraph.strip() %}
+                        <p>{{ paragraph.strip() }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="row bg-light p-5 rounded mb-5">
+            <div class="col-12 text-center mb-4">
+                <h3>My Achievements</h3>
+            </div>
+            {% for stat in data.about.stats %}
+            <div class="col-md-4 text-center">
+                <h2 class="display-3 text-primary fw-bold">{{ stat.number }}</h2>
+                <p class="h5">{{ stat.label }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Skills Section -->
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h3>Skills & Technologies</h3>
+                <p>Here are the technologies I work with</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            {% for skill_group in data.skills %}
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-primary">{{ skill_group.category }}</h5>
+                        <div class="mt-3">
+                            {% for skill in skill_group.items %}
+                            <span class="badge bg-primary me-1 mb-2">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <h3 class="mb-4">Let's Work Together</h3>
+                <p class="lead mb-4">I'm always interested in new opportunities and exciting projects.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary btn-lg">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

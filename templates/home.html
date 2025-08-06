@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-primary text-white py-5 mt-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <div class="col-lg-8">
+                <h1 class="display-4 fw-bold mb-3">
+                    Hi, I'm <span class="text-warning">{{ data.name }}</span>
+                </h1>
+                <h2 class="h3 mb-4">{{ data.title }}</h2>
+                <p class="lead mb-4">{{ data.description }}</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="{{ url_for('projects') }}" class="btn btn-warning btn-lg">View My Work</a>
+                    <a href="{{ url_for('contact') }}" class="btn btn-outline-light btn-lg">Get In Touch</a>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <div class="profile-image mt-4 mt-lg-0">
+                    <div class="bg-light rounded-circle mx-auto" style="width: 250px; height: 250px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user fa-8x text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick About Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="mb-4">About Me</h2>
+                <p class="lead">{{ data.about.text.split('.')[0] }}.</p>
+                <a href="{{ url_for('about') }}" class="btn btn-primary">Learn More About Me</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            {% for stat in data.about.stats %}
+            <div class="col-md-4 text-center mb-4">
+                <h3 class="display-4 text-primary fw-bold">{{ stat.number }}</h3>
+                <p class="h5">{{ stat.label }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Preview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-5">
+                <h2>Featured Projects</h2>
+                <p class="lead">Here are some of my recent works</p>
+            </div>
+        </div>
+        <div class="row">
+            {% for project in data.projects[:2] %}
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description }}</p>
+                        <div class="mb-3">
+                            {% for tech in project.technologies %}
+                            <span class="badge bg-secondary me-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex gap-2">
+                            <a href="{{ project.demo }}" class="btn btn-primary btn-sm">Demo</a>
+                            <a href="{{ project.github }}" class="btn btn-outline-secondary btn-sm">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
